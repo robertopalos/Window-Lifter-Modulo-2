@@ -57,8 +57,8 @@ __asm void usr_init()
 #if INIT_EXTERNAL_BUS_INTERFACE_SETUP==1
     bl      INIT_ExternalBusAndMemory    /* Set up access to external memory (inc. chip select and MMU) */
 #endif
-    bl      EXCEP_InitExceptionHandlers   /* Set up Default Exception handling */
-    bl      INTC_InitINTCInterrupts       /* Set up INTC Interrupts Requests handling */
+//    bl      EXCEP_InitExceptionHandlers   /* Set up Default Exception handling */
+//    bl      INTC_InitINTCInterrupts       /* Set up INTC Interrupts Requests handling */
 
     mtlr    r30                          /* Get saved return address */
 

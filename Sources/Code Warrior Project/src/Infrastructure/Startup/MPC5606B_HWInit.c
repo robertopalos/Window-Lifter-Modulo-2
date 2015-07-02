@@ -37,9 +37,26 @@ extern long L2SRAM_LOCATION;
 __asm void INIT_Derivative(void) 
 {
 nofralloc
+    /* Disable WatchDog*/
+    // *(volatile unsigned int*)0xfff38010 = 0x0000c520; 
+    e_lis r9,0x0001
+    e_add16i r9,r9,-15072
+    e_lis r8,0xfff4
+    e_stw r9,-32752(r8)
 
-    /* MPC5606B SRAM initialization code                              */
-    lis r11,L2SRAM_LOCATION@h       /* Base of SRAM, 64-bit word aligned */
+    //  *(volatile unsigned int*) 0xfff38010 = 0x0000d928; 
+    e_lis r9,0x0001
+    e_add16i r9,r9,-9944
+    e_lis r8,0xfff4
+    e_stw r9,-32752(r8)
+    // *(volatile unsigned int*) 0xfff38000 = 0xff00000A; 
+    e_lis r3,0xff00
+    se_addi r3,0x000a
+    e_lis r8,0xfff4
+    e_stw r3,-32768(r8)
+    
+    /* SRAM initialization code*/
+    lis r11,L2SRAM_LOCATION@h
     ori r11,r11,L2SRAM_LOCATION@l
 
     li r12,640        				/* Loops to cover 80K SRAM; 80k/4 bytes/32 GPRs = 640 */

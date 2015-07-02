@@ -22,6 +22,8 @@ typedef void(*INTCInterruptFn)(void);
 /* Function declarations                                                      */
 /*----------------------------------------------------------------------------*/
 
+void enableIrq(void);
+
 #ifdef __cplusplus
 extern "C" {
 #endif

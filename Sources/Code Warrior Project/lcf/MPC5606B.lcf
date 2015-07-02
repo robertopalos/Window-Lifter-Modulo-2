@@ -56,12 +56,18 @@ SECTIONS
 
     GROUP : {
        .__uninitialized_intc_handlertable ALIGN(2048) : {}
-       .data   : {}
+       .data(DATA)   : 
+       	{
+       	/*	*(.i_mysection)*/
+       	}
        .sdata  : {}
        .sbss   : {}
        .sdata2 : {}
        .sbss2  : {}
-       .bss    : {}
+       .bss    : 
+       		{
+       		/*	*(.u_mysection)*/
+       		}
     } > internal_ram
 }
 
