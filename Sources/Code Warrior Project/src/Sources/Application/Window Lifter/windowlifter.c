@@ -1,10 +1,38 @@
+/*============================================================================*/
+/*                        SV C CE SOFTWARE GROUP                              */
+/*============================================================================*/
+/*                        OBJECT SPECIFICATION                                */
+/*============================================================================*
+* C Source:         %main.c%
+* Instance:         
+* %version:         1 %
+* %created_by:      uid734106 %
+* %date_created:    Thu Jul  2 10:28:43 2015 %
+*=============================================================================*/
+/* DESCRIPTION : C source template file                                       */
+/*============================================================================*/
+/* FUNCTION COMMENT : 	This file calls for the actions to be implement		  */
+/*                      this include automatic, manual and antipinch functions*/
+/*============================================================================*/
+/*                               OBJECT HISTORY                               */
+/*============================================================================*/
+/*  REVISION |   DATE      |                               |      AUTHOR      */
+/*----------------------------------------------------------------------------*/
+/*  1.0      | 02/07/2015  |                               | Roberto Palos    */
+/* Integration under Continuous CM                                            */
+/*============================================================================*/
+/* Includes */
+/* -------- */
 #include "typedefs.h"
 #include"windowlifter.h"	//Window lifter main application
 #include"GPIO.h"			//Register Mod
+
+/*======================================================*/ 
+/* Definition of RAM variables                          */
+/*======================================================*/ 
 uint8_t led = 10;
-unsigned int limitup = 0;
-unsigned int limitdown = 0;
-extern unsigned int antipinch = 0;
+unsigned int limitup = 1;
+unsigned int limitdown = 0, antipinch = 0;
 
 /**************************************************************
  *  Name                 :	downmanual
@@ -16,52 +44,18 @@ extern unsigned int antipinch = 0;
  *  Critical/explanation :    No
  **************************************************************/
 void downmanual(void){
-	while(bdown && !limitdown){
-		if(led == 1){
-			SIU.GPDO[led].R = 1;
+	SIU.GPDO[0].R = 0;
+	while(b_down && !limitdown){
+		SIU.GPDO[led].R = 1;
+		led--;
+		delay(400);
+		if(!led){
 			limitdown = 1;
-		}
-		else{
-			SIU.GPDO[led].R = 1;
-			led--;
-			delay(500);	
+			led++;
 		}
 	}
 	limitup = 0;
-}
-/**************************************************************
- *  Name                 :	autodown
- *  Description          :	Function that pull down the window tills
-							gets all open.
-							doing nothing.
- *  Parameters           :  NONE
- *  Return               :	NONE
- *  Critical/explanation :    No
- **************************************************************/
-void autodown(void){
-	while(!limitdown){
-		if(antipinch){
-			for(led = led; led > 1;){
-				SIU.GPDO[led].R = 1;
-				led--;
-				delay(400);
-			}
-			limitdown = 1;
-		}
-		else{
-			//Nothing.
-		}
-		if(led == 1){
-			SIU.GPDO[led].R = 1;
-			limitdown = 1;
-		}
-		else{
-			SIU.GPDO[led].R = 1;
-			led--;
-			delay(400);
-		}
-	}
-	limitup = 0;
+	SIU.GPDO[0].R = 1;
 }
 /**************************************************************
  *  Name                 :	upmanual
@@ -73,31 +67,42 @@ void autodown(void){
  *  Critical/explanation :    No
  **************************************************************/
 void upmanual(void){
-	if(bapinch){
-		delay(10);
-		if(bapinch){
-			antipinch = 1;
-			autodown();
-		}
-	}
-	while(bup && !limitup){
-		if(led == 10){
-			SIU.GPDO[led].R = 0;
+	SIU.GPDO[11].R = 0;
+	while(b_up && !limitup){
+		
+		SIU.GPDO[led].R = 0;
+		led++;
+		delay(400);
+		if(led == 11){
 			limitup = 1;
+			led--;
 		}
-		else{
-			SIU.GPDO[led].R = 0;
-			led++;
-			delay(500);
-		}
-	}
-	if(!limitdown && antipinch)
-			autodown();
-	if(antipinch){
-		antipinch = 0;
-		delay(5000);
 	}
 	limitdown = 0;
+	SIU.GPDO[11].R = 1;
+}
+/**************************************************************
+ *  Name                 :	autodown
+ *  Description          :	Function that pull down the window tills
+							gets all open.
+							doing nothing.
+ *  Parameters           :  NONE
+ *  Return               :	NONE
+ *  Critical/explanation :    No
+ **************************************************************/
+void autodown(void){
+	SIU.GPDO[0].R = 0;
+	while(!limitdown){
+		SIU.GPDO[led].R = 1;
+		led--;
+		delay(400);
+		if(!led){
+			limitdown = 1;
+			led++;
+		}
+	}
+	limitup = 0;
+	SIU.GPDO[0].R = 1;
 }
 /**************************************************************
  *  Name                 :	autoup
@@ -109,28 +114,20 @@ void upmanual(void){
  *  Critical/explanation :    No
  **************************************************************/
 void autoup(void){
-	while(!limitup && !antipinch){
-		if(led == 10){
-			SIU.GPDO[led].R = 0;
+	SIU.GPDO[11].R = 0;
+	while(!limitup){
+		SIU.GPDO[led].R = 0;
+		led++;
+		delay(400);
+		if(led == 11){
 			limitup = 1;
+			led--;
 		}
-		else{
-			if(bapinch || antipinch){
-				antipinch = 1;
-				autodown();
-			}
-			else{
-				SIU.GPDO[led].R = 0;
-				led++;
-				delay(500);
-			}
-		}
-	}
-	if(!limitdown && antipinch)
-			autodown();
-	if(antipinch){
-		antipinch = 0;
-		delay(5000);
 	}
 	limitdown = 0;
+	SIU.GPDO[11].R = 1;
+}
+
+void pinchup(void){
+	
 }

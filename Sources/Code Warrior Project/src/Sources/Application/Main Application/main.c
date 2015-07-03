@@ -98,21 +98,16 @@
  *  Return               :	NONE
  *  Critical/explanation :    No
  **************************************************************/
- extern unsigned int antipinch;
 void main(){
 	InitHW();	//Include All Functions To Initialize HW
-	
 	//Infinite Loop
 	for(;;){
-		if(antipinch)
-			autodown();
-		else
-		while(bup || bdown){
-			if(bdown){
-				delay(10);
-				if(bdown){
-					delay(500);
-					if(bdown){
+		while(b_up || b_down){
+			if(b_down){
+				delay(10);				//Fail-safe detect.
+				if(b_down){
+					delay(500);			//Condition to enter in auto or manual.
+					if(b_down){
 						downmanual();
 					}
 					else{
@@ -120,17 +115,20 @@ void main(){
 					}
 				}
 			}
-			else if(bup){
-				delay(10);
-				if(bup){
-					delay(500);
-					if(bup){
+			else if(b_up){
+				delay(10);				//Fail-safe detect.
+				if(b_up){
+					delay(500);			//Condition to enter in auto or manual.
+					if(b_up){
 						upmanual();
 					}
 					else{
 						autoup();
 					}
 				}
+			}
+			else{
+				//Do Nothing
 			}
 		}
 	}
