@@ -1,6 +1,11 @@
-
 #ifndef _PLL_H_
 #define _PLL_H_
-void initModesAndClock(void);
-void initPeriClkGen(void);
+void DisableWatchdog(void);
+void InitTimer(void);
+void InitModesAndClock(void);
+void InitPeriClkGen(void);
+void InitSysclk(void);
+void InitGPIO(void);
+void InitLeds(void);
+void InitHW(void);
 #endif

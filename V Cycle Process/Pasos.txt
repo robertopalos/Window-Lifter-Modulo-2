@@ -1,0 +1,27 @@
+Actividades
+
+	Requerimientos De Ingenieria
+*		Identificar componentes de los requerimientos de software funcionales y no funcionales.
+*		Recolectar requerimientos en la matriz de trazabilidad (seccion de requerimientos)
+*		Verificar que los enunciados de requerimientos estan claros y no ambiguos.
+-		Revisar los requerimientos con los stakeholders y resolver cualquier duda.
+
+	Planeacion de Estimacion
+		Producir un diseño conceptual basado en los requerimientos (diagrama a bloques, diagrama a pasos)
+		Documentar el diseño conceptual en el documento de especificaciones de diseño.
+		Basado en los modulos definidos, estimar  los alcances necesarios pararealizar cada uno de los modulos.
+		Crear un plan para implenetar el sistema.
+
+	Plan de Pruebas
+		Especificar pasos de prueba para validacion de requerimientos de alto nivel.
+		Por cada requerimiento definido, especificar los criterios para que la prueba sea valida.
+		Docuemntar los procesos de pruebas in la plantilla de plan de pruebas.
+		Incluir especificaciones de prueba en la matriz de trazabilidad (seccion de pruebas).
+
+Pasos Para Conciderarlo Completado
+
+		Matriz de trazabilidad llenada con los requerimientos bien definidos y categorizados.
+		Plan para implementar cambios.
+		Diseño conceptual en el documento de las especificaciones de diseño.
+		Pasos de pruebas para la verificacion de requerimientos.
+		Subir todos el trabajo de documentacion en el repositorio.

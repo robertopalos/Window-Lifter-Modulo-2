@@ -27,43 +27,21 @@ Link map of __start
     3] FlashConfig (func,global) found in __ppc_eabi_init.o 
      4] @22 (object,local) found in __ppc_eabi_init.o 
    2] main (func,global) found in main.o 
-    3] initModesAndClock (func,global) found in pll.o 
-    3] disableWatchdog (func,global) found in main.o 
-    3] vfnGPIO_LED_Init (func,global) found in GPIO.o 
-     4] vfnGPIO_Init_channel (func,global) found in GPIO.o 
-     4] vfnGPIO_Output (func,global) found in GPIO.o 
-    3] INTC_InitINTCInterrupts (func,global) found in IntcInterrupts.o 
-     4] INTC_INTCInterruptHandler (func,global) found in IntcInterrupts.o 
-     4] INTCInterruptsHandlerTable (object,global) found in IntcInterrupts.o 
-    3] EXCEP_InitExceptionHandlers (func,global) found in Exceptions.o 
-     4] EXCEPTION_HANDLERS found as linker generated symbol
-     4] EXCEP_DefaultExceptionHandler (func,global) found in Exceptions.o 
-    3] PIT_device_init (func,global) found in PIT.o 
-    3] dummy_500ms (func,global) found in dummy.o 
-     4] function_table_def (object,global) found in dummy.o 
-      5] Task_5ms (func,global) found in dummy.o 
-      5] Task_10ms (func,global) found in dummy.o 
-      5] Task_50ms (func,global) found in dummy.o 
-      5] Task_100ms (func,global) found in dummy.o 
-     4] rps_TaskPtr (object,global) found in dummy.o 
-    3] PIT_channel_configure (func,global) found in PIT.o 
-     4] PIT_Callback (object,global) found in PIT.o 
-     4] PIT_channel_0_isr (func,global) found in PIT.o 
-     4] INTC_InstallINTCInterruptHandler (func,global) found in IntcInterrupts.o 
-    3] PIT_channel_start (func,global) found in PIT.o 
-    3] enableIrq (func,global) found in IntcInterrupts.o 
-    3] dummy_endless_loop (func,global) found in dummy.o 
-    3] BackgroundSubsystemTasks (func,global) found in main.o 
-     4] rub_Var1 (object,global) found in main.o 
-     4] rpub_PtrToU8 (object,global) found in main.o 
-     4] Function1 (func,global) found in main.o 
-     4] rpfu_PtrToFctn (object,global) found in main.o 
-     4] rub_Var2 (object,global) found in main.o 
+    3] InitHW (func,global) found in pll.o 
+     4] DisableWatchdog (func,global) found in pll.o 
+     4] InitSysclk (func,global) found in pll.o 
+      5] InitModesAndClock (func,global) found in pll.o 
+      5] InitPeriClkGen (func,global) found in pll.o 
+     4] InitTimer (func,global) found in pll.o 
+     4] InitGPIO (func,global) found in pll.o 
+     4] InitLeds (func,global) found in pll.o 
    2] exit (func,weak) found in __ppc_eabi_init.o 
     3] _ExitProcess (func,weak) found in __ppc_eabi_init.o 
   1] bam_rchw (object,global) found in MPC55xx_init.o 
   1] bam_resetvector (object,global) found in MPC55xx_init.o 
+  1] INTC_INTCInterruptHandler (func,global) found in IntcInterrupts.o 
   1] ivor_branch_table_p1 (func,global) found in ivor_branch_table.o 
+  1] EXCEP_DefaultExceptionHandler (func,global) found in Exceptions.o 
     3] .init (section,local) found in MPC55xx_init.o 
     3] .init.13 (notype,local) found in MPC55xx_init.o 
     3] .text (section,local) found in MPC5606B_HWInit.o 
@@ -71,15 +49,9 @@ Link map of __start
     3] .ivor_branch_table (section,local) found in ivor_branch_table.o 
     3] .ivor_branch_table.24 (notype,local) found in ivor_branch_table.o 
     3] .text (section,local) found in main.o 
-    3] .text.39 (notype,local) found in main.o 
+    3] .text.21 (notype,local) found in main.o 
     3] .text (section,local) found in pll.o 
-    3] .text.23 (notype,local) found in pll.o 
-    3] .text (section,local) found in dummy.o 
-    3] .text.57 (notype,local) found in dummy.o 
-    3] .text (section,local) found in PIT.o 
-    3] .text.44 (notype,local) found in PIT.o 
-    3] .text (section,local) found in GPIO.o 
-    3] .text.47 (notype,local) found in GPIO.o 
+    3] .text.64 (notype,local) found in pll.o 
     3] .init (section,local) found in Runtime.PPCEABI.VS.UC.a __start.o
     3] .init.130 (notype,local) found in Runtime.PPCEABI.VS.UC.a __start.o
     3] .text (section,local) found in Runtime.PPCEABI.VS.UC.a runtime.o
@@ -90,61 +62,61 @@ Link map of __start
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000008 00000000 000002e0  1 .__bam_bootarea 	MPC55xx_init.o 
-  00000000 000004 00000000 000002e0  4 bam_rchw 	MPC55xx_init.o 
-  00000004 000004 00000004 000002e4  4 bam_resetvector 	MPC55xx_init.o 
+  00000000 000008 00000000 00000200  1 .__bam_bootarea 	MPC55xx_init.o 
+  00000000 000004 00000000 00000200  4 bam_rchw 	MPC55xx_init.o 
+  00000004 000004 00000004 00000204  4 bam_resetvector 	MPC55xx_init.o 
 
 
 .init section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000098 00000020 000002e8  1 .init 	Linker Generated Symbol File 
-  00000000 000078 00000020 000002e8  4 _rom_copy_info 	Linker Generated Symbol File 
-  00000078 000020 00000098 00000360  4 _bss_init_info 	Linker Generated Symbol File 
+  00000000 000068 00000020 00000208  1 .init 	Linker Generated Symbol File 
+  00000000 000060 00000020 00000208  4 _rom_copy_info 	Linker Generated Symbol File 
+  00000060 000008 00000080 00000268  4 _bss_init_info 	Linker Generated Symbol File 
 
 
 .init_vle section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000036 000000b8 00000380  1 .init 	__ppc_eabi_init.o 
-  00000000 000014 000000b8 00000380  2 __init_hardware 	__ppc_eabi_init.o 
-  00000014 000022 000000cc 00000394  2 __flush_cache 	__ppc_eabi_init.o 
-  00000036 00000a 000000ee 000003b6  1 .init 	MPC55xx_init.o 
-  00000036 00000a 000000ee 000003b6  2 usr_init 	MPC55xx_init.o 
-  00000040 000000 000000f8 000003c0  1 .init.13 	MPC55xx_init.o 
-  00000040 0000ea 000000f8 000003c0  1 .init 	Runtime.PPCEABI.VS.UC.a __start.o
-  00000040 000048 000000f8 000003c0  4 __start 	Runtime.PPCEABI.VS.UC.a __start.o
-  00000088 00002c 00000140 00000408  2 __copy_rom_section 	Runtime.PPCEABI.VS.UC.a __start.o
+  00000000 000036 00000088 00000270  1 .init 	__ppc_eabi_init.o 
+  00000000 000014 00000088 00000270  2 __init_hardware 	__ppc_eabi_init.o 
+  00000014 000022 0000009c 00000284  2 __flush_cache 	__ppc_eabi_init.o 
+  00000036 00000a 000000be 000002a6  1 .init 	MPC55xx_init.o 
+  00000036 00000a 000000be 000002a6  2 usr_init 	MPC55xx_init.o 
+  00000040 000000 000000c8 000002b0  1 .init.13 	MPC55xx_init.o 
+  00000040 0000ea 000000c8 000002b0  1 .init 	Runtime.PPCEABI.VS.UC.a __start.o
+  00000040 000048 000000c8 000002b0  4 __start 	Runtime.PPCEABI.VS.UC.a __start.o
+  00000088 00002c 00000110 000002f8  2 __copy_rom_section 	Runtime.PPCEABI.VS.UC.a __start.o
   UNUSED   00000e ........ ........    __init_bss_section Runtime.PPCEABI.VS.UC.a __start.o
-  000000b4 00001a 0000016c 00000434  2 __init_registers 	Runtime.PPCEABI.VS.UC.a __start.o
-  000000ce 00005c 00000186 0000044e  2 __init_data 	Runtime.PPCEABI.VS.UC.a __start.o
-  0000012a 000000 000001e2 000004aa  1 .init.130 	Runtime.PPCEABI.VS.UC.a __start.o
-  0000012a 0000ca 000001e2 000004aa  1 .init 	Runtime.PPCEABI.VS.UC.a __mem.o
-  0000012a 000038 000001e2 000004aa  2 memcpy 	Runtime.PPCEABI.VS.UC.a __mem.o
-  00000162 000078 0000021a 000004e2  2 __fill_mem 	Runtime.PPCEABI.VS.UC.a __mem.o
-  000001da 00001a 00000292 0000055a  2 memset 	Runtime.PPCEABI.VS.UC.a __mem.o
+  000000b4 00001a 0000013c 00000324  2 __init_registers 	Runtime.PPCEABI.VS.UC.a __start.o
+  000000ce 00005c 00000156 0000033e  2 __init_data 	Runtime.PPCEABI.VS.UC.a __start.o
+  0000012a 000000 000001b2 0000039a  1 .init.130 	Runtime.PPCEABI.VS.UC.a __start.o
+  0000012a 0000ca 000001b2 0000039a  1 .init 	Runtime.PPCEABI.VS.UC.a __mem.o
+  0000012a 000038 000001b2 0000039a  2 memcpy 	Runtime.PPCEABI.VS.UC.a __mem.o
+  00000162 000078 000001ea 000003d2  2 __fill_mem 	Runtime.PPCEABI.VS.UC.a __mem.o
+  000001da 00001a 00000262 0000044a  2 memset 	Runtime.PPCEABI.VS.UC.a __mem.o
 
 
 .ivor_branch_table section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 0000fe 00001000 00000580  1 .ivor_branch_table 	ivor_branch_table.o 
-  00000000 0000fe 00001000 00000580 16 ivor_branch_table_p1 	ivor_branch_table.o 
-  000000fe 000000 000010fe 0000067e  1 .ivor_branch_table.24 	ivor_branch_table.o 
+  00000000 0000fe 00001000 00000470  1 .ivor_branch_table 	ivor_branch_table.o 
+  00000000 0000fe 00001000 00000470 16 ivor_branch_table_p1 	ivor_branch_table.o 
+  000000fe 000000 000010fe 0000056e  1 .ivor_branch_table.24 	ivor_branch_table.o 
 
 
 .__exception_handlers section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000002 00001100 00000680  1 .__exception_handlers 	Exceptions.o 
-  00000000 000002 00001100 00000680 16 EXCEP_DefaultExceptionHandler 	Exceptions.o 
-  00000002 00000e 00001110 00000690 16 *fill*
-  00000010 000096 00001110 00000690  1 .__exception_handlers 	IntcInterrupts.o 
-  00000010 000096 00001110 00000690 16 INTC_INTCInterruptHandler 	IntcInterrupts.o 
+  00000000 000002 00001100 00000570  1 .__exception_handlers 	Exceptions.o 
+  00000000 000002 00001100 00000570 16 EXCEP_DefaultExceptionHandler 	Exceptions.o 
+  00000002 00000e 00001110 00000580 16 *fill*
+  00000010 000096 00001110 00000580  1 .__exception_handlers 	IntcInterrupts.o 
+  00000010 000096 00001110 00000580 16 INTC_INTCInterruptHandler 	IntcInterrupts.o 
 
 
 .text section layout
@@ -157,55 +129,30 @@ Link map of __start
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000066 00002000 00000730  1 .text 	__ppc_eabi_init.o 
-  00000000 00003e 00002000 00000730  2 FlashConfig 	__ppc_eabi_init.o 
-  0000003e 000012 0000203e 0000076e  2 __init_user 	__ppc_eabi_init.o 
+  00000000 000066 00002000 00000620  1 .text 	__ppc_eabi_init.o 
+  00000000 00003e 00002000 00000620  2 FlashConfig 	__ppc_eabi_init.o 
+  0000003e 000012 0000203e 0000065e  2 __init_user 	__ppc_eabi_init.o 
   UNUSED   000014 ........ ........    abort __ppc_eabi_init.o 
-  00000050 000014 00002050 00000780  2 exit 	__ppc_eabi_init.o 
-  00000064 000002 00002064 00000794  2 _ExitProcess 	__ppc_eabi_init.o 
-  00000066 00004c 00002066 00000796  1 .text 	MPC5606B_HWInit.o 
-  00000066 00004c 00002066 00000796  2 INIT_Derivative 	MPC5606B_HWInit.o 
-  000000b2 000000 000020b2 000007e2  1 .text.9 	MPC5606B_HWInit.o 
-  000000b2 000016 000020b2 000007e2  1 .text 	Exceptions.o 
-  000000b2 000016 000020b2 000007e2  2 EXCEP_InitExceptionHandlers 	Exceptions.o 
-  000000c8 000078 000020c8 000007f8  1 .text 	IntcInterrupts.o 
-  000000c8 000030 000020c8 000007f8  2 INTC_InstallINTCInterruptHandler 	IntcInterrupts.o 
-  000000f8 000018 000020f8 00000828  2 enableIrq 	IntcInterrupts.o 
-  00000110 000030 00002110 00000840  2 INTC_InitINTCInterrupts 	IntcInterrupts.o 
-  00000140 0000e2 00002140 00000870  1 .text 	main.o 
-  00000140 000032 00002140 00000870  2 disableWatchdog 	main.o 
-  00000172 000004 00002172 000008a2  2 Function1 	main.o 
-  00000176 000062 00002176 000008a6  2 main 	main.o 
-  000001d8 00004a 000021d8 00000908  2 BackgroundSubsystemTasks 	main.o 
-  00000222 000000 00002222 00000952  1 .text.39 	main.o 
-  00000222 000088 00002222 00000952  1 .text 	pll.o 
-  00000222 000088 00002222 00000952  2 initModesAndClock 	pll.o 
-  UNUSED   00000c ........ ........    initPeriClkGen pll.o 
-  000002aa 000000 000022aa 000009da  1 .text.23 	pll.o 
-  000002aa 00010e 000022aa 000009da  1 .text 	dummy.o 
-  000002aa 000022 000022aa 000009da  2 Task_5ms 	dummy.o 
-  000002cc 000022 000022cc 000009fc  2 Task_10ms 	dummy.o 
-  000002ee 000022 000022ee 00000a1e  2 Task_50ms 	dummy.o 
-  00000310 000022 00002310 00000a40  2 Task_100ms 	dummy.o 
-  UNUSED   00003a ........ ........    Test dummy.o 
-  00000332 000076 00002332 00000a62  2 dummy_500ms 	dummy.o 
-  000003a8 000010 000023a8 00000ad8  2 dummy_endless_loop 	dummy.o 
-  000003b8 000000 000023b8 00000ae8  1 .text.57 	dummy.o 
-  000003b8 0000d0 000023b8 00000ae8  1 .text 	PIT.o 
-  000003b8 00000a 000023b8 00000ae8  2 PIT_device_init 	PIT.o 
-  000003c2 00005a 000023c2 00000af2  2 PIT_channel_configure 	PIT.o 
-  0000041c 000018 0000241c 00000b4c  2 PIT_channel_start 	PIT.o 
-  UNUSED   000018 ........ ........    PIT_channel_stop PIT.o 
-  00000434 000054 00002434 00000b64  2 PIT_channel_0_isr 	PIT.o 
-  00000488 000000 00002488 00000bb8  1 .text.44 	PIT.o 
-  00000488 000170 00002488 00000bb8  1 .text 	GPIO.o 
-  00000488 0000d2 00002488 00000bb8  2 vfnGPIO_Init_channel 	GPIO.o 
-  0000055a 00001e 0000255a 00000c8a  2 vfnGPIO_Output 	GPIO.o 
-  UNUSED   000128 ........ ........    vfnGPIO_FlashMainLED GPIO.o 
-  00000578 000080 00002578 00000ca8  2 vfnGPIO_LED_Init 	GPIO.o 
-  000005f8 000000 000025f8 00000d28  1 .text.47 	GPIO.o 
-  000005f8 000064 000025f8 00000d28  1 .text 	Runtime.PPCEABI.VS.UC.a runtime.o
-  000005f8 00004a 000025f8 00000d28  2 __save_gpr 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00000050 000014 00002050 00000670  2 exit 	__ppc_eabi_init.o 
+  00000064 000002 00002064 00000684  2 _ExitProcess 	__ppc_eabi_init.o 
+  00000066 00004c 00002066 00000686  1 .text 	MPC5606B_HWInit.o 
+  00000066 00004c 00002066 00000686  2 INIT_Derivative 	MPC5606B_HWInit.o 
+  000000b2 000000 000020b2 000006d2  1 .text.9 	MPC5606B_HWInit.o 
+  000000b2 000016 000020b2 000006d2  1 .text 	main.o 
+  000000b2 000016 000020b2 000006d2  2 main 	main.o 
+  000000c8 000000 000020c8 000006e8  1 .text.21 	main.o 
+  000000c8 0001c0 000020c8 000006e8  1 .text 	pll.o 
+  000000c8 000032 000020c8 000006e8  2 DisableWatchdog 	pll.o 
+  000000fa 000022 000020fa 0000071a  2 InitTimer 	pll.o 
+  0000011c 000088 0000211c 0000073c  2 InitModesAndClock 	pll.o 
+  000001a4 00000c 000021a4 000007c4  2 InitPeriClkGen 	pll.o 
+  000001b0 000014 000021b0 000007d0  2 InitSysclk 	pll.o 
+  000001c4 000082 000021c4 000007e4  2 InitGPIO 	pll.o 
+  00000246 000024 00002246 00000866  2 InitLeds 	pll.o 
+  0000026a 00001e 0000226a 0000088a  2 InitHW 	pll.o 
+  00000288 000000 00002288 000008a8  1 .text.64 	pll.o 
+  00000288 000064 00002288 000008a8  1 .text 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00000288 00004a 00002288 000008a8  2 __save_gpr 	Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_14 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_14 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_15 Runtime.PPCEABI.VS.UC.a runtime.o
@@ -238,7 +185,7 @@ Link map of __start
   UNUSED   000000 ........ ........    _save32gpr_28 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_29 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_29 Runtime.PPCEABI.VS.UC.a runtime.o
-  00000638 000000 00002638 00000d68    _savegpr_30 (entry of __save_gpr) 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000002c8 000000 000022c8 000008e8    _savegpr_30 (entry of __save_gpr) 	Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_30 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
@@ -279,11 +226,11 @@ Link map of __start
   UNUSED   000000 ........ ........    _rest32gpr_30 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _restgpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _rest32gpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
-  00000642 000008 00002642 00000d72  2 __restore_frame_and_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
-  00000644 000000 00002644 00000d74    __finish_restore_frame_and_exit2 (entry of __restore_frame_and_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
-  0000064a 00000a 0000264a 00000d7a  2 __restore_gpr_31_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
-  00000650 000000 00002650 00000d80    __finish_restore_frame_and_exit (entry of __restore_gpr_31_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
-  00000654 000008 00002654 00000d84  2 __restore_gpr_30_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000002d2 000008 000022d2 000008f2  2 __restore_frame_and_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000002d4 000000 000022d4 000008f4    __finish_restore_frame_and_exit2 (entry of __restore_frame_and_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000002da 00000a 000022da 000008fa  2 __restore_gpr_31_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000002e0 000000 000022e0 00000900    __finish_restore_frame_and_exit (entry of __restore_gpr_31_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000002e4 000008 000022e4 00000904  2 __restore_gpr_30_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000008 ........ ........    __restore_gpr_29_exit Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000008 ........ ........    __restore_gpr_28_exit Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000008 ........ ........    __restore_gpr_27_exit Runtime.PPCEABI.VS.UC.a runtime.o
@@ -327,15 +274,15 @@ Link map of __start
   UNUSED   00001a ........ ........    __shl2i Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   00001a ........ ........    __shr2u Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   00001c ........ ........    __shr2i Runtime.PPCEABI.VS.UC.a runtime.o
-  0000065c 000000 0000265c 00000d8c  1 .text.205 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000002ec 000000 000022ec 0000090c  1 .text.205 	Runtime.PPCEABI.VS.UC.a runtime.o
 
 
 .rodata section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 00000c 00002660 00000d90  1 .rodata 	__ppc_eabi_init.o 
-  00000000 00000c 00002660 00000d90  4 @22 	__ppc_eabi_init.o 
+  00000000 00000c 000022f0 00000910  1 .rodata 	__ppc_eabi_init.o 
+  00000000 00000c 000022f0 00000910  4 @22 	__ppc_eabi_init.o 
 
 
 .ctors section layout
@@ -366,38 +313,24 @@ extabindex section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 001340 40000000 00001000  1 .__uninitialized_intc_handlertable 	IntcInterrupts.o 
-  00000000 001340 40000000 00001000  8 INTCInterruptsHandlerTable 	IntcInterrupts.o 
 
 
 .data section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000020 40001340 00001000  1 .data 	dummy.o 
-  00000000 000020 40001340 00001000  8 function_table_def 	dummy.o 
 
 
 .sdata section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000001 40001360 00001020  1 .sdata 	main.o 
-  00000000 000001 40001360 00001020  1 rub_Var1 	main.o 
 
 
 .sbss section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 00000c 40001368 00001028  1 .sbss 	main.o 
-  00000000 000004 40001368 00001028  4 rpub_PtrToU8 	main.o 
-  00000004 000001 4000136c 0000102c  1 rub_Var2 	main.o 
-  00000008 000004 40001370 00001030  4 rpfu_PtrToFctn 	main.o 
-  0000000c 000004 40001378 00001038  8 *fill*
-  00000010 000004 40001378 00001038  1 .sbss 	dummy.o 
-  UNUSED   000002 ........ ........    @LOCAL@Test__Fv@rub_U16Counter dummy.o 
-  00000010 000004 40001378 00001038  4 rps_TaskPtr 	dummy.o 
 
 
 .sdata2 section layout
@@ -416,37 +349,35 @@ extabindex section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000020 40001380 00001028  1 .bss 	PIT.o 
-  00000000 000020 40001380 00001028  8 PIT_Callback 	PIT.o 
 
 
 Memory map:
                        Starting Size     File     ROM      RAM Buffer  S-Record
                        address           Offset   Address  Address     Line
-       .__bam_bootarea 00000000 00000008 000002e0 00000000 00000000          2
-                 .init 00000020 00000098 000002e8 00000020 00000020          3
-             .init_vle 000000b8 000001f4 00000380 000000b8 000000b8         11
-    .ivor_branch_table 00001000 00000100 00000580 00001000 00001000         36
-  .__exception_handlers 00001100 000000a8 00000680 00001100 00001100         49
-             .text_vle 00002000 0000065c 00000730 00002000 00002000         58
-               .rodata 00002660 0000000c 00000d90 00002660 00002660        140
-                .ctors 0000266c 00000000 00000d9c 0000266c 0000266c          0
-                .dtors 0000266c 00000000 00000d9c 0000266c 0000266c          0
-                 extab 0000266c 00000000 00000d9c 0000266c 0000266c          0
-            extabindex 0000266c 00000000 00000d9c 0000266c 0000266c          0
-  .__uninitialized_intc_handlertable 40000000 00001340 00001000 00002800 00002800          0
-                 .data 40001340 00000020 00001000 00002800 00002800        141
-                .sdata 40001360 00000004 00001020 00002820 00002820        143
-                 .sbss 40001368 00000014 00001028 00002828 00002828          0
-               .sdata2 4000137c 00000000 00001028 00002828 00002828          0
-                .sbss2 4000137c 00000000 00001028 00002828 00002828          0
-                  .bss 40001380 00000020 00001028 00002828 00002828          0
-      .PPC.EMB.apuinfo 00005e00 00000000 00006e30 00008628 00008628          0
-         .debug_abbrev          0000013b 00001028
-           .debug_info          00001b01 00001163
-           .debug_line          000029de 00002c64
-            .debug_loc          000005ac 00005642
-       .debug_pubnames          00000511 00005bee
+       .__bam_bootarea 00000000 00000008 00000200 00000000 00000000          2
+                 .init 00000020 00000068 00000208 00000020 00000020          3
+             .init_vle 00000088 000001f4 00000270 00000088 00000088          9
+    .ivor_branch_table 00001000 00000100 00000470 00001000 00001000         34
+  .__exception_handlers 00001100 000000a8 00000570 00001100 00001100         47
+             .text_vle 00002000 000002ec 00000620 00002000 00002000         56
+               .rodata 000022f0 0000000c 00000910 000022f0 000022f0         94
+                .ctors 000022fc 00000000 0000091c 000022fc 000022fc          0
+                .dtors 000022fc 00000000 0000091c 000022fc 000022fc          0
+                 extab 000022fc 00000000 0000091c 000022fc 000022fc          0
+            extabindex 000022fc 00000000 0000091c 000022fc 000022fc          0
+  .__uninitialized_intc_handlertable 40000000 00000000 00001000 000022fc 000022fc          0
+                 .data 40000000 00000000 00000920 000022fc 000022fc          0
+                .sdata 40000000 00000000 00000920 000022fc 000022fc          0
+                 .sbss 40000000 00000000 00000920 000022fc 000022fc          0
+               .sdata2 40000000 00000000 0000091c 000022fc 000022fc          0
+                .sbss2 40000000 00000000 0000091c 000022fc 000022fc          0
+                  .bss 40000000 00000000 00000920 000022fc 000022fc          0
+      .PPC.EMB.apuinfo 00004880 00000000 000051a0 00006b7c 00006b7c          0
+         .debug_abbrev          00000129 0000091c
+           .debug_info          0000156e 00000a45
+           .debug_line          00002258 00001fb3
+            .debug_loc          000003c2 0000420b
+       .debug_pubnames          00000307 000045cd
 
 
 Linker generated symbols:
@@ -457,10 +388,10 @@ Linker generated symbols:
         _e___bam_bootarea 00000008
                   _f_init 00000020
               _f_init_rom 00000020
-                  _e_init 000000b8
-              _f_init_vle 000000b8
-          _f_init_vle_rom 000000b8
-              _e_init_vle 000002ac
+                  _e_init 00000088
+              _f_init_vle 00000088
+          _f_init_vle_rom 00000088
+              _e_init_vle 0000027c
      _f_ivor_branch_table 00001000
  _f_ivor_branch_table_rom 00001000
      _e_ivor_branch_table 00001100
@@ -472,46 +403,46 @@ _f___exception_handlers_rom 00001100
                   _e_text 00002000
               _f_text_vle 00002000
           _f_text_vle_rom 00002000
-              _e_text_vle 0000265c
-                _f_rodata 00002660
-            _f_rodata_rom 00002660
-                _e_rodata 0000266c
-                 _f_ctors 0000266c
-             _f_ctors_rom 0000266c
-                 _e_ctors 0000266c
-                 _f_dtors 0000266c
-             _f_dtors_rom 0000266c
-                 _e_dtors 0000266c
-                  _fextab 0000266c
-              _fextab_rom 0000266c
-                  _eextab 0000266c
-             _fextabindex 0000266c
-         _fextabindex_rom 0000266c
-             _eextabindex 0000266c
+              _e_text_vle 000022ec
+                _f_rodata 000022f0
+            _f_rodata_rom 000022f0
+                _e_rodata 000022fc
+                 _f_ctors 000022fc
+             _f_ctors_rom 000022fc
+                 _e_ctors 000022fc
+                 _f_dtors 000022fc
+             _f_dtors_rom 000022fc
+                 _e_dtors 000022fc
+                  _fextab 000022fc
+              _fextab_rom 000022fc
+                  _eextab 000022fc
+             _fextabindex 000022fc
+         _fextabindex_rom 000022fc
+             _eextabindex 000022fc
 _f___uninitialized_intc_handlertable 40000000
-_e___uninitialized_intc_handlertable 40001340
-                  _f_data 40001340
-              _f_data_rom 00002800
-                  _e_data 40001360
-                 _f_sdata 40001360
-             _f_sdata_rom 00002820
-                 _e_sdata 40001364
-                  _f_sbss 40001368
-                  _e_sbss 4000137c
-                _f_sdata2 4000137c
-            _f_sdata2_rom 00002828
-                _e_sdata2 4000137c
-                 _f_sbss2 4000137c
-                 _e_sbss2 4000137c
-                   _f_bss 40001380
-                   _e_bss 400013a0
+_e___uninitialized_intc_handlertable 40000000
+                  _f_data 40000000
+              _f_data_rom 000022fc
+                  _e_data 40000000
+                 _f_sdata 40000000
+             _f_sdata_rom 000022fc
+                 _e_sdata 40000000
+                  _f_sbss 40000000
+                  _e_sbss 40000000
+                _f_sdata2 40000000
+            _f_sdata2_rom 000022fc
+                _e_sdata2 40000000
+                 _f_sbss2 40000000
+                 _e_sbss2 40000000
+                   _f_bss 40000000
+                   _e_bss 40000000
               _stack_addr 40014000
                _stack_end 40013000
                _heap_addr 40012000
                 _heap_end 40013000
-             _nbfunctions 0000002c
-           SIZEOF_HEADERS 000002e0
-               _SDA_BASE_ 40009360
-              _SDA2_BASE_ 4000937c
-           _ABS_SDA_BASE_ 40009360
-          _ABS_SDA2_BASE_ 4000937c
+             _nbfunctions 0000001f
+           SIZEOF_HEADERS 00000200
+               _SDA_BASE_ 40008000
+              _SDA2_BASE_ 40008000
+           _ABS_SDA_BASE_ 40008000
+          _ABS_SDA2_BASE_ 40008000

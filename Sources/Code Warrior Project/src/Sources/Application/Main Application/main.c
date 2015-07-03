@@ -1,115 +1,113 @@
-/******************************************************************************************************
- *	Alexis Antonio Garcia Claustro 																	  *		
- *	Jose Roberto Palos Sandoval 																	  *
- ******************************************************************************************************/
+/*============================================================================*/
+/*                        SV C CE SOFTWARE GROUP                              */
+/*============================================================================*/
+/*                        OBJECT SPECIFICATION                                */
+/*============================================================================*
+* C Source:         %main.c%
+* Instance:         
+* %version:         1 %
+* %created_by:      uid734106 %
+* %date_created:    Thu Jul  2 10:27:43 2015 %
+*=============================================================================*/
+/* DESCRIPTION : C source template file                                       */
+/*============================================================================*/
+/* FUNCTION COMMENT : 	This File Describe The Main Purpose Of The Window	  */
+/*						Window Lifter Practice	Calling The Functions.		  */
+/*                                                                            */
+/*============================================================================*/
+/*                               OBJECT HISTORY                               */
+/*============================================================================*/
+/*  REVISION |   DATE      |                               |      AUTHOR      */
+/*----------------------------------------------------------------------------*/
+/*  1.0      | 02/07/2015  |                               | Roberto Palos    */
+/* Integration under Continuous CM                                             */
+/*============================================================================*/
+
+/* Includes */
+/* -------- */
+#include"GPIO.h"	//Register Mod
+#include"pll.h"		//Initialization of HW
+#include"PIT.h"		//Periodic Interrupts And Timers
+/* Functions macros, constants, types and datas         */
+/* ---------------------------------------------------- */
+/* Functions macros */
+
+/*==================================================*/ 
+/* Definition of constants                          */
+/*==================================================*/ 
+/* BYTE constants */
 
 
-#include "MCU_derivative.h"
+/* WORD constants */
 
 
-/** GPIO funtion prototypes  */
-#include    "GPIO.h"
-#include    "PIT.h"
-#include    "dummy.h"
-
-/*****************************************************************************************************
-* Definition of module wide VARIABLEs 
-*****************************************************************************************************/
+/* LONG and STRUCTURE constants */
 
 
-/****************************************************************************************************
-* Declaration of module wide FUNCTIONs 
-*****************************************************************************************************/
 
-void disableWatchdog(void) 
-{
-  SWT.SR.R = 0x0000c520;     /* Write keys to clear soft lock bit */
-  SWT.SR.R = 0x0000d928; 
-  SWT.CR.R = 0x8000010A;     /* Clear watchdog enable (WEN) */
-}
+/*======================================================*/ 
+/* Definition of RAM variables                          */
+/*======================================================*/ 
+/* BYTE RAM variables */
 
-T_UBYTE Function1(T_UBYTE *rpub_U8Ptr)
-{
-	return (*rpub_U8Ptr);
-}   
 
-/*****************************************************************************************************
-* Definition of global wide MACROs / #DEFINE-CONSTANTs
-*****************************************************************************************************/
+/* WORD RAM variables */
 
-/*****************************************************************************************************
-* Declaration of module wide TYPEs 
-*****************************************************************************************************/
-    
-T_UBYTE (*rpfu_PtrToFctn)(T_UBYTE *); /* Our pointer to function */ 
 
-/******************************************************************************************************
-* Definition of module wide VARIABLEs 
-******************************************************************************************************/
+/* LONG and STRUCTURE RAM variables */
 
- T_UBYTE rub_Var1 = 0xFA; 
- T_UBYTE rub_Var2; 
- T_UBYTE * rpub_PtrToU8;
- 
-/******************************************************************************************************
-* Code of module wide FUNCTIONS
-******************************************************************************************************/
 
-void BackgroundSubsystemTasks(void);
+/*======================================================*/ 
+/* close variable declaration sections                  */
+/*======================================================*/ 
 
-/*~~~~~~~ Main Code ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-int main(void) 
+/* Private defines */
 
-{
-	initModesAndClock();
-	/* Disable Watchdog */
-	disableWatchdog();
-	/*Initialize LEDs on TRK-MPC560xB board */
-	vfnGPIO_LED_Init();	
-	/*Initialize Interrupts */
-	INTC_InitINTCInterrupts();
-	/*Initialize Exception Handlers */
-	EXCEP_InitExceptionHandlers();
+
+/* Private functions prototypes */
+/* ---------------------------- */
+
+
+
+/* Exported functions prototypes */
+/* ----------------------------- */
+
+/* Inline functions */
+/* ---------------- */
+/**************************************************************
+ *  Name                 : inline_func	2
+ *  Description          :
+ *  Parameters           :  [Input, Output, Input / output]
+ *  Return               :
+ *  Critical/explanation :    [yes / No]
+ **************************************************************/
+
+
+/* Private functions */
+/* ----------------- */
+/**************************************************************
+ *  Name                 :	main
+ *  Description          :	Main Function
+ *  Parameters           :  void
+ *  Return               :	void
+ *  Critical/explanation :	No
+ **************************************************************/
+void main(){
+	InitHW();	//Include All Functions To Initialize HW
 	
-	PIT_device_init();
-    PIT_channel_configure(PIT_CHANNEL_0 , dummy_500ms);	
-    PIT_channel_start(PIT_CHANNEL_0);
-    SIU.GPDI[64].R = 1;
- 	SIU.PCR[64].R = 0x0103; 
-    
-    /* Enable External Interrupts*/
-    enableIrq();
-    
-    dummy_endless_loop();
-	/* Infinite loop */
-	for (;;) 
-	{
-
-
-        BackgroundSubsystemTasks();
+	//Infinite Loop
+	for(;;){
+		
 	}
 }
 
-/*~~~~~~~ End of Main Code ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-/* Background tasks related to Subsystem control */
-void BackgroundSubsystemTasks(void) 
-{
-	rpub_PtrToU8 = &rub_Var1; /* We need to initialize the pointer to be used by our function invocation */
-
-    rpfu_PtrToFctn = &Function1; /* Let's perform our deferencing procedure (initialization) */
-
-    /* Let's first call our function through direct invocation */
-    rub_Var2 = Function1(rpub_PtrToU8);
-    
-    /* Clear var2 in preparation to next invocation */
-    rub_Var2 = 0;
-
-    /* Now, perform invocation through our pointer */
-    rub_Var2 = rpfu_PtrToFctn(rpub_PtrToU8);
-
-    /* See, I told you, pointers to functions are FUN !! */;
-}
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
+/* Exported functions */
+/* ------------------ */
+/**************************************************************
+ *  Name                 :	export_func
+ *  Description          :
+ *  Parameters           :  [Input, Output, Input / output]
+ *  Return               :
+ *  Critical/explanation :    [yes / No]
+ **************************************************************/
 
