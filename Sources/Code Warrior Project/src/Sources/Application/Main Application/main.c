@@ -98,11 +98,15 @@
  *  Return               :	NONE
  *  Critical/explanation :    No
  **************************************************************/
+ extern unsigned int antipinch;
 void main(){
 	InitHW();	//Include All Functions To Initialize HW
 	
 	//Infinite Loop
 	for(;;){
+		if(antipinch)
+			autodown();
+		else
 		while(bup || bdown){
 			if(bdown){
 				delay(10);

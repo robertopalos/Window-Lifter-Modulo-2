@@ -4,7 +4,7 @@
 uint8_t led = 10;
 unsigned int limitup = 0;
 unsigned int limitdown = 0;
-unsigned int antipinch = 0;
+extern unsigned int antipinch = 0;
 
 /**************************************************************
  *  Name                 :	downmanual
@@ -17,12 +17,13 @@ unsigned int antipinch = 0;
  **************************************************************/
 void downmanual(void){
 	while(bdown && !limitdown){
-		if(led == 0){
+		if(led == 1){
+			SIU.GPDO[led].R = 1;
 			limitdown = 1;
 		}
 		else{
+			SIU.GPDO[led].R = 1;
 			led--;
-			SIU.GPDO[led].R = 0;
 			delay(500);	
 		}
 	}
@@ -39,17 +40,25 @@ void downmanual(void){
  **************************************************************/
 void autodown(void){
 	while(!limitdown){
-		if(led == 0){
-			limitdown = 1;
-			if(antipinch){
-				delay(5000);
-				antipinch = 0;
+		if(antipinch){
+			for(led = led; led > 1;){
+				SIU.GPDO[led].R = 1;
+				led--;
+				delay(400);
 			}
+			limitdown = 1;
 		}
 		else{
-			delay(400);
-			SIU.GPDO[led].R = 0;
+			//Nothing.
+		}
+		if(led == 1){
+			SIU.GPDO[led].R = 1;
+			limitdown = 1;
+		}
+		else{
+			SIU.GPDO[led].R = 1;
 			led--;
+			delay(400);
 		}
 	}
 	limitup = 0;
@@ -73,13 +82,20 @@ void upmanual(void){
 	}
 	while(bup && !limitup){
 		if(led == 10){
+			SIU.GPDO[led].R = 0;
 			limitup = 1;
 		}
 		else{
+			SIU.GPDO[led].R = 0;
 			led++;
-			SIU.GPDO[led].R = 1;
 			delay(500);
 		}
+	}
+	if(!limitdown && antipinch)
+			autodown();
+	if(antipinch){
+		antipinch = 0;
+		delay(5000);
 	}
 	limitdown = 0;
 }
@@ -93,20 +109,28 @@ void upmanual(void){
  *  Critical/explanation :    No
  **************************************************************/
 void autoup(void){
-	while(!limitup){
+	while(!limitup && !antipinch){
 		if(led == 10){
+			SIU.GPDO[led].R = 0;
 			limitup = 1;
 		}
 		else{
-			if(bapinch){
+			if(bapinch || antipinch){
 				antipinch = 1;
 				autodown();
-			}else{
+			}
+			else{
+				SIU.GPDO[led].R = 0;
 				led++;
-				SIU.GPDO[led].R = 1;
 				delay(500);
 			}
 		}
+	}
+	if(!limitdown && antipinch)
+			autodown();
+	if(antipinch){
+		antipinch = 0;
+		delay(5000);
 	}
 	limitdown = 0;
 }

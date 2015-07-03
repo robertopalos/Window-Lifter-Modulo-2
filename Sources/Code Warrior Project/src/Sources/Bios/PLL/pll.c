@@ -100,10 +100,14 @@ void InitGPIO(void){
  **************************************************************/
 void InitLeds(void){
 	unsigned char a;
-	for(a = 0; a < 12; a++){
-		SIU.GPDO[a].R = 1;
+	for(a = 1; a < 11; a++){
+		SIU.GPDO[a].R = 0;
 	}
+	SIU.GPDO[0].R = 1;
+	SIU.GPDO[11].R = 1;
+	
 }
+
 /**************************************************************
  *  Name                 : InitHW
  *  Description          :	Initialization of the hardware.
