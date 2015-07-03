@@ -2,6 +2,7 @@
 #include "MCU_derivative.h" 
 /* Data types */
 #include "typedefs.h"
+#define	Peri	2 
 /**************************************************************
  *  Name                 :	DisableWatchdog
  *  Description          :	Disable watchdog for no reboots when
@@ -59,7 +60,7 @@ void InitModesAndClock(void){
  *  Critical/explanation :    No
  **************************************************************/
 void InitPeriClkGen(void){
-	CGM.SC_DC[2].R = 0x80;          	/* MPC56xxB: Enable peri set 3 sysclk divided by 1 */
+	CGM.SC_DC[Peri].R = 0x80;          	/* MPC56xxB: Enable peri set 3 sysclk divided by 1 */
 }
 /**************************************************************
  *  Name                 :	InitSysclk
@@ -81,14 +82,14 @@ void InitSysclk(void){
  *  Critical/explanation :    No
  **************************************************************/
 void InitGPIO(void){
-	volatile counter = 0;
-	for(counter = 0; counter < 12 ; counter++){
-		SIU.GPDO[counter].R = 0;
-		SIU.PCR[counter].R = 0x0200;
+	T_UBYTE lub_counter = 0;
+	for(lub_counter = 0; lub_counter < 12 ; lub_counter++){
+		SIU.GPDO[lub_counter].R = 0;
+		SIU.PCR[lub_counter].R = 0x0200;
 	}
-	for(counter = 0; counter < 3 ; counter++){
-		SIU.GPDI[counter + 64].R = 1;
-		SIU.PCR[counter + 64].R = 0x0103;
+	for(lub_counter = 0; lub_counter < 3 ; lub_counter++){
+		SIU.GPDI[lub_counter + 64].R = 1;
+		SIU.PCR[lub_counter + 64].R = 0x0103;
 	}
 }
 /**************************************************************
@@ -99,13 +100,12 @@ void InitGPIO(void){
  *  Critical/explanation :    No
  **************************************************************/
 void InitLeds(void){
-	unsigned char a;
-	for(a = 1; a < 11; a++){
-		SIU.GPDO[a].R = 0;
+	unsigned char lub_initleds;
+	for(lub_initleds = 1; lub_initleds < 11; lub_initleds++){
+		SIU.GPDO[lub_initleds].R = 0;
 	}
 	SIU.GPDO[0].R = 1;
 	SIU.GPDO[11].R = 1;
-	
 }
 
 /**************************************************************
@@ -130,7 +130,7 @@ void InitHW(void){
  *  Return               :	NONE
  *  Critical/explanation :    No
  **************************************************************/
- void delay(vuint32_t tiempo){
+ void delay(T_ULONG tiempo){
 	STM.CNT.R=0;
 	while(STM.CNT.R<tiempo*1000){
 	}

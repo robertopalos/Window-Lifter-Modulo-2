@@ -64,7 +64,8 @@
 /*======================================================*/ 
 
 /* Private defines */
-
+#define	us10	10
+#define us500	500
 
 /* Private functions prototypes */
 /* ---------------------------- */
@@ -104,9 +105,9 @@ void main(){
 	for(;;){
 		while(b_up || b_down){
 			if(b_down){
-				delay(10);				//Fail-safe detect.
+				delay(us10);				//Fail-safe detect.
 				if(b_down){
-					delay(500);			//Condition to enter in auto or manual.
+					delay(us500);			//Condition to enter in auto or manual.
 					if(b_down){
 						downmanual();
 					}
@@ -116,9 +117,9 @@ void main(){
 				}
 			}
 			else if(b_up){
-				delay(10);				//Fail-safe detect.
+				delay(us10);				//Fail-safe detect.
 				if(b_up){
-					delay(500);			//Condition to enter in auto or manual.
+					delay(us500);			//Condition to enter in auto or manual.
 					if(b_up){
 						upmanual();
 					}

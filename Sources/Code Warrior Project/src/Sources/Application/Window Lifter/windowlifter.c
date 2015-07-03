@@ -24,15 +24,19 @@
 /* Includes */
 /* -------- */
 #include "typedefs.h"
+//#include "stdtypedef.h"
 #include"windowlifter.h"	//Window lifter main application
 #include"GPIO.h"			//Register Mod
 
+#define green 0
+#define blue 11
+#define transition 400
 /*======================================================*/ 
 /* Definition of RAM variables                          */
 /*======================================================*/ 
-uint8_t led = 10;
-unsigned int limitup = 1;
-unsigned int limitdown = 0, antipinch = 0;
+T_UBYTE rub_ledposition = 10;
+T_UBYTE rub_limitup = 1;
+T_UBYTE rub_limitdown = 0, antipinch = 0;
 
 /**************************************************************
  *  Name                 :	downmanual
@@ -44,18 +48,18 @@ unsigned int limitdown = 0, antipinch = 0;
  *  Critical/explanation :    No
  **************************************************************/
 void downmanual(void){
-	SIU.GPDO[0].R = 0;
-	while(b_down && !limitdown){
-		SIU.GPDO[led].R = 1;
-		led--;
-		delay(400);
-		if(!led){
-			limitdown = 1;
-			led++;
+	SIU.GPDO[green].R = 0;
+	while(b_down && !rub_limitdown){
+		SIU.GPDO[rub_ledposition].R = 1;
+		rub_ledposition--;
+		delay(transition);
+		if(!rub_ledposition){
+			rub_limitdown = 1;
+			rub_ledposition++;
 		}
 	}
-	limitup = 0;
-	SIU.GPDO[0].R = 1;
+	rub_limitup = 0;
+	SIU.GPDO[green].R = 1;
 }
 /**************************************************************
  *  Name                 :	upmanual
@@ -67,19 +71,19 @@ void downmanual(void){
  *  Critical/explanation :    No
  **************************************************************/
 void upmanual(void){
-	SIU.GPDO[11].R = 0;
-	while(b_up && !limitup){
+	SIU.GPDO[blue].R = 0;
+	while(b_up && !rub_limitup){
 		
-		SIU.GPDO[led].R = 0;
-		led++;
-		delay(400);
-		if(led == 11){
-			limitup = 1;
-			led--;
+		SIU.GPDO[rub_ledposition].R = 0;
+		rub_ledposition++;
+		delay(transition);
+		if(rub_ledposition == 11){
+			rub_limitup = 1;
+			rub_ledposition--;
 		}
 	}
-	limitdown = 0;
-	SIU.GPDO[11].R = 1;
+	rub_limitdown = 0;
+	SIU.GPDO[blue].R = 1;
 }
 /**************************************************************
  *  Name                 :	autodown
@@ -91,18 +95,18 @@ void upmanual(void){
  *  Critical/explanation :    No
  **************************************************************/
 void autodown(void){
-	SIU.GPDO[0].R = 0;
-	while(!limitdown){
-		SIU.GPDO[led].R = 1;
-		led--;
-		delay(400);
-		if(!led){
-			limitdown = 1;
-			led++;
+	SIU.GPDO[green].R = 0;
+	while(!rub_limitdown){
+		SIU.GPDO[rub_ledposition].R = 1;
+		rub_ledposition--;
+		delay(transition);
+		if(!rub_ledposition){
+			rub_limitdown = 1;
+			rub_ledposition++;
 		}
 	}
-	limitup = 0;
-	SIU.GPDO[0].R = 1;
+	rub_limitup = 0;
+	SIU.GPDO[green].R = 1;
 }
 /**************************************************************
  *  Name                 :	autoup
@@ -114,18 +118,18 @@ void autodown(void){
  *  Critical/explanation :    No
  **************************************************************/
 void autoup(void){
-	SIU.GPDO[11].R = 0;
-	while(!limitup){
-		SIU.GPDO[led].R = 0;
-		led++;
-		delay(400);
-		if(led == 11){
-			limitup = 1;
-			led--;
+	SIU.GPDO[blue].R = 0;
+	while(!rub_limitup){
+		SIU.GPDO[rub_ledposition].R = 0;
+		rub_ledposition++;
+		delay(transition);
+		if(rub_ledposition == 11){
+			rub_limitup = 1;
+			rub_ledposition--;
 		}
 	}
-	limitdown = 0;
-	SIU.GPDO[11].R = 1;
+	rub_limitdown = 0;
+	SIU.GPDO[blue].R = 1;
 }
 
 void pinchup(void){
