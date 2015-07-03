@@ -25,9 +25,11 @@
 
 /* Includes */
 /* -------- */
-#include"GPIO.h"	//Register Mod
-#include"pll.h"		//Initialization of HW
-#include"PIT.h"		//Periodic Interrupts And Timers
+#include"GPIO.h"			//Register Mod
+#include"pll.h"				//Initialization of HW
+#include"PIT.h"				//Periodic Interrupts And Timers
+#include"windowlifter.h"	//Window lifter main application
+
 /* Functions macros, constants, types and datas         */
 /* ---------------------------------------------------- */
 /* Functions macros */
@@ -97,17 +99,31 @@ void main(){
 	
 	//Infinite Loop
 	for(;;){
-		
+		while(bup || bdown){
+			if(bdown){
+				delay(10);
+				if(bdown){
+					delay(500);
+					if(bdown){
+						downmanual();
+					}
+					else{
+						autodown();
+					}
+				}
+			}
+			else if(bup){
+				delay(10);
+				if(bup){
+					delay(500);
+					if(bup){
+						upmanual();
+					}
+					else{
+						autoup();
+					}
+				}
+			}
+		}
 	}
 }
-
-/* Exported functions */
-/* ------------------ */
-/**************************************************************
- *  Name                 :	export_func
- *  Description          :
- *  Parameters           :  [Input, Output, Input / output]
- *  Return               :
- *  Critical/explanation :    [yes / No]
- **************************************************************/
-

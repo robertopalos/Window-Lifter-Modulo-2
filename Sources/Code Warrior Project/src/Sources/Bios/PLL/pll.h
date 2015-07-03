@@ -8,4 +8,5 @@ void InitSysclk(void);
 void InitGPIO(void);
 void InitLeds(void);
 void InitHW(void);
+void delay(vuint32_t tiempo);
 #endif
