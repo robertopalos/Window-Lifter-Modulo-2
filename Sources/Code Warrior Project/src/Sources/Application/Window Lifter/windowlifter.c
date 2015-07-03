@@ -47,9 +47,9 @@ void autodown(void){
 			}
 		}
 		else{
-			led--;
+			delay(400);
 			SIU.GPDO[led].R = 0;
-			delay(500);	
+			led--;
 		}
 	}
 	limitup = 0;

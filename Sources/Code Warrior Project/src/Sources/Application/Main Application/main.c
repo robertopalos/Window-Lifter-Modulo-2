@@ -89,10 +89,14 @@
 /* ----------------- */
 /**************************************************************
  *  Name                 :	main
- *  Description          :	Main Function
- *  Parameters           :  void
- *  Return               :	void
- *  Critical/explanation :	No
+ *  Description          :	Main function. Keeps monitoring the
+							up and down buttons until one gets pressed
+							and then execute the respective up/down auto/manual
+							window.
+							doing nothing.
+ *  Parameters           :  NONE
+ *  Return               :	NONE
+ *  Critical/explanation :    No
  **************************************************************/
 void main(){
 	InitHW();	//Include All Functions To Initialize HW
